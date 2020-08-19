@@ -70,99 +70,53 @@
       </nav>
     </div>
     
-    <div class="container mt-2 mb-2">
-        <form>
-            <div class="form-row mb-2">
-              <div class="col-4 col-md-2 mb-2">
-                <input type="text" class="form-control" placeholder="Age" />
-              </div>
-              <div class="col-8 col-md-5 mb-2">
-                <input type="text" class="form-control" placeholder="First name" />
-              </div>
-              <div class="col col-md-5 mb-2">
-                <input type="text" class="form-control" placeholder="Last Name" />
-              </div>
-            </div>
+
+    <div class="card text-center m-auto col-xs-12 col-sm-8 col md-6 col-lg-4 border-info">
+      <div class="card-body">
+        <h5 id="card-name" class="card-title">Name</h5>
+
+
+          <div id="message-info-box" class="alert alert-danger invisible text-center" role="alert"> </div>
+          <div id="message-error-box" class="alert alert-danger invisible text-center" role="alert"> </div>
+        </div>
     
-            <div class="form-row">
-              <div class="col-md-2 col-4 mb-2">
-                <input type="text" class="form-control" placeholder="Postal Code" />
-              </div>
-              <div class="col-md-5 col-8 mb-2" >
-                <input type="text" class="form-control" placeholder="Street" />
-              </div>
-              <div class="col-md-5 mb-2">
-                <input type="text" class="form-control" placeholder="City" />
-              </div>
-            </div>
-            <button type="submit" onsubmit="addUser" class="btn btn-outline-primary mb-2">
-              Add User
-            </button>
-        </form>
-      </div>
-  
-
-
-
-    <div class="container mt-2 mb-2">
-      <form>
-          <div class="form-row mb-2">
-            <div class="col-4 col-md-2 mb-2">
-              <input type="text" class="form-control" placeholder="Age" />
-            </div>
-            <div class="col-8 col-md-5 mb-2">
-              <input type="text" class="form-control" placeholder="First name" />
-            </div>
-            <div class="col col-md-5 mb-2">
-              <input type="text" class="form-control" placeholder="Last Name" />
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="col-md-2 col-4 mb-2">
-              <input type="text" class="form-control" placeholder="Postal Code" />
-            </div>
-            <div class="col-md-5 col-8 mb-2" >
-              <input type="text" class="form-control" placeholder="Street" />
-            </div>
-            <div class="col-md-5 mb-2">
-              <input type="text" class="form-control" placeholder="City" />
-            </div>
-          </div>
-  
-          <button type="submit" class="btn btn-outline-chris3 mb-2 px-4">
-            Edit
-          </button>
-      </form>
-    </div>
-
-<form action="http://test.eko.eu/user${userId}" method="DELETE"></form>
-
-    <div class="container col-sm-8">
-      <div id="message-info-box" class="alert alert-danger invisible text-center" role="alert"> </div>
-      <div id="message-error-box" class="alert alert-danger invisible text-center" role="alert"> </div>
-    </div>
-
-
-<div class="container">
-  <table class="table table-hover table-sm table-dark .table-responsive">
-      <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Age</th>
-      <th scope="col">City</th>
-      <th scope="col">Info</th>   
-      <th scope="col">Edit</th>   
-      <th scope="col">Delete</th>
-    </tr>
-  </thead>
-  <tbody class="table-users">
-    <!-- Html from index.js get method injected here! -->
-  </tbody>
-    </table>
+        
+    <div class="container col-sm-12">
+      <table class="table table-bordered table-dark .table-responsive">
+          <thead>
+        <tr>
+          <th scope="row" class="pt-3 pb-3">First Name</th>
+          <td id="input-firstname" class="pt-3 pb-3"></td>
+    
+        <tr>
+          <th scope="row" class="pt-3 pb-3">Last Name</th>
+          <td id="input-lastname" class="pt-3 pb-3"></td>
+        </tr>
+        <tr>
+          <th scope="row" class="pt-3 pb-3">Age</th>
+          <td id="input-age" class="pt-3 pb-3"></td>
+        </tr>
+        <tr>
+          <th scope="row" class="pt-3 pb-3">Postal</th>
+          <td id="input-postal" class="pt-3 pb-3"></td>
+        </tr>
+        <tr>
+          <th scope="row" class="pt-3 pb-3">City</th>
+          <td id="input-city" class="pt-3 pb-3"></td>
+        </tr>
+        <tr>
+          <th scope="row" class="pt-3 pb-3">Street</th>
+          <td id="input-street" class="pt-3 pb-3"></td>
+        </tr>
+      </thead>
+        </table>
+<div id="user-btns"></div>      
 </div>
+    </div>
+
+
+  
+
 <script>
 localStorage.setItem("page", 'user');
 </script>
