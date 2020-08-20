@@ -106,6 +106,8 @@ function getUsers() {
         })
         .catch(error => {
             errorMessage('Error: Failed to fetch data!');
+            localStorage.setItem('msg', null);
+            localStorage.setItem('msgErr', null);
         })
 }
 // info-message handler
