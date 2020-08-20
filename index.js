@@ -52,7 +52,7 @@ function getUsers() {
     //checking for localstorage messages to display
     infoMessage(null);
     errorMessage(null);
-    fetch('http://test.eko.eu')
+    fetch('https://test.eko.eu')
         .then(res => res.json())
         .then(data => {
             let order = 0;
@@ -112,18 +112,12 @@ function getUsers() {
 function infoMessage(message) {
     let messageDOM = document.getElementById('message-info-box');
     if (message !== null) {
-        console.log('1');
-
         messageDOM.classList.remove('invisible');
         messageDOM.innerHTML = message;
     } else if ((localStorage.getItem('msg') !== 'null')) {
         messageDOM.classList.remove('invisible');
-        console.log('2');
-
         messageDOM.innerHTML = localStorage.getItem('msg');
     } else {
-        console.log('3');
-
         messageDOM.classList.add('invisible')
     }
 }
@@ -212,13 +206,12 @@ function addUser(event) {
             if (res.status !== 200) {
                 errorMessage(`Some error ocurred! Error code: ${res.status}`);
             } else {
+                console.log(res);
                 window.location.href = "./index.html"
                 localStorage.setItem('msg', 'User succesfully added!');
             }
         }).catch(error => errorMessage(error));
 }
-
-
 
 function deleteUser(event) {
     let id = +event.target.value;
