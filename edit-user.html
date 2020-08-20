@@ -15,12 +15,12 @@
 
   <body>
 
-    <div class="container nav-top">
+    <div class="container nav-top d-inline-block">
       <nav
         id="nav"
         class="navbar fixed-top navbar-expand-lg navbar-dark bg-chris"
       >
-        <a class="navbar-brand p-0 m-0" href="index.html"><img alt="Eko-Okna" class="ml-2 mt-0 mb-0 mr-3" src="./img/logo.png" width="115" height="50"></a>
+        <a class="navbar-brand p-0 m-0" href="index.html"><img alt="Eko-Okna" class="ml-2 mt-0 mb-0 mr-3" src="./img/logo.png" width="100" height="40"></a>
         <button
           class="navbar-toggler"
           type="button"
@@ -58,7 +58,7 @@
                 About Us
               </a>
               <div
-                class="dropdown-menu"
+                class="dropdown-menu list-group-item-chris3"
                 aria-labelledby="navbarDropdownMenuLink"
               >
                 <a class="dropdown-item" href="#">Info(Not implemented)</a>
@@ -69,44 +69,115 @@
         </div>
       </nav>
     </div>
-    
+
+    <section class="jumbotron d-block text-center mt-n2 list-group-item-dark">
+      <div class="container mt-0  list-group-item-dark">
+        <h1 class="jumbotron-heading">Here you can edit a single user.</h1>
+      </div> 
+      </section>
+
+  <div class="mt-5"></div>
     <div class="container col-sm-8">
-      <div id="message-info-box" class="alert alert-success invisible text-center" role="alert"> </div>
-      <div id="message-error-box" class="alert alert-danger invisible text-center" role="alert"> </div>
-    </div>
+      <div id="message-error-box" class="alert border-danger alert-danger invisible text-center" role="alert"> </div>
+      <div id="message-info-box" class="alert border-success alert-success invisible text-center" role="alert"> </div>
+</div>
 
-
-    <div class="container mt-2 mb-2">
+    <div class="container mb-2">
       <form>
           <div class="form-row mb-2">
             <div class="col-4 col-md-2 mb-2">
-              <input id="input-age" type="text" class="form-control bg-chris2 "placeholder="Age" />
+              <input id="input-age" type="text" class="form-control list-group-item-dark "placeholder="Age" />
             </div>
             <div class="col-8 col-md-5 mb-2">
-              <input id="input-firstname" type="text" class="form-control" placeholder="First name" />
+              <input id="input-firstname" type="text" class="form-control list-group-item-dark" placeholder="First name" />
             </div>
             <div class="col col-md-5 mb-2">
-              <input id="input-lastname" type="text" class="form-control" placeholder="Last Name" />
+              <input id="input-lastname" type="text" class="form-control list-group-item-dark" placeholder="Last Name" />
             </div>
           </div>
 
           <div class="form-row">
             <div class="col-md-2 col-4 mb-2">
-              <input id="input-postal" type="text" class="form-control" placeholder="Postal Code" />
+              <input id="input-postal" type="text" class="form-control list-group-item-dark" placeholder="Postal Code" />
             </div>
             <div class="col-md-5 col-8 mb-2" >
-              <input id="input-street" type="text" class="form-control" placeholder="Street" />
+              <input id="input-street" type="text" class="form-control list-group-item-dark" placeholder="Street" />
             </div>
             <div class="col-md-5 mb-2">
-              <input id="input-city" type="text" class="form-control" placeholder="City" />
+              <input id="input-city" type="text" class="form-control list-group-item-dark" placeholder="City" />
             </div>
           </div>
   
-          <button id="btn-edit" type="submit" class="btn btn-outline-chris3 mb-2 px-4">
+          <button id="btn-edit" type="submit" class="btn btn-outline-chris3 list-group-item-chris3 mb-2 pr-5 pl-5 pt-2 pb-2">
             Edit
           </button>
       </form>
     </div>
+
+    <footer class="page-footer font-small blue pt-4 bg-chris text-light">
+
+      <div class="container-fluid text-center text-md-left">
+    
+        <div class="row">
+    
+          <div class="col-md-6 mt-md-0 mt-3">
+    
+            <h5 class="text-uppercase">Do you have any questions about our company?</h5>
+            <p>Contact with us!</p>
+            <a class="navbar-brand p-0 m-0" href="index.html"><img alt="Eko-Okna" class="ml-2 mt-0 mb-0 mr-3" src="./img/logo.png" width="250" height="100"></a>
+    
+          </div>
+    
+          <hr class="clearfix w-100 d-md-none pb-3">
+    
+          <div class="col-md-3 mb-md-0 mb-3">
+    
+            <h5 class="text-uppercase">Our Company</h5>
+    
+            <ul class="list-unstyled">
+              <li>
+                <a class="text-chris3" href="#!"><h6>History</h6></a>
+              </li>
+              <li>
+                <a class="text-chris3" href="#!"><h6>Localizations</h6></a>
+              </li>
+              <li>
+                <a class="text-chris3" href="#!"><h6>Contact</h6></a>
+              </li>
+              <li>
+                <a class="text-chris3" href="#!"><h6>Rules</h6></a>
+              </li>
+            </ul>
+    
+          </div>
+          <div class="col-md-3 mb-md-0 mb-3">
+    
+            <h5 class="text-uppercase">Career</h5>
+    
+            <ul class="list-unstyled">
+              <li>
+                <a class="text-chris3" href="#!"><h6>Why us?</h6></a>
+              </li>
+              <li>
+                <a class="text-chris3" href="#!"><h6>Job offers</h6></a>
+              </li>
+              <li>
+                <a class="text-chris3" href="#!"><h6>Cooperation with universities</h6></a>
+              </li>
+              <li>
+                <a class="text-chris3" href="#!"><h6>Rules</h6></a>
+              </li>
+            </ul>
+    
+          </div>
+        </div>
+      </div>
+    
+      <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        <a class="text-chris3" href="https://github.com/FuryChris"> Krzysztof Kłapczyk></a>
+      </div>
+    
+    </footer>
 
 <script>
 localStorage.setItem("page", 'edit-user');

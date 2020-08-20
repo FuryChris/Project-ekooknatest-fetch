@@ -14,12 +14,12 @@
   </head>
 
   <body>
-    <div class="container nav-top">
+    <div class="container nav-top d-inline-block">
       <nav
         id="nav"
         class="navbar fixed-top navbar-expand-lg navbar-dark bg-chris"
       >
-        <a class="navbar-brand p-0 m-0" href="index.html"><img alt="Eko-Okna" class="ml-2 mt-0 mb-0 mr-3" src="./img/logo.png" width="115" height="50"></a>
+        <a class="navbar-brand p-0 m-0" href="index.html"><img alt="Eko-Okna" class="ml-2 mt-0 mb-0 mr-3" src="./img/logo.png" width="100" height="40"></a>
         <button
           class="navbar-toggler"
           type="button"
@@ -36,7 +36,7 @@
           <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" href="index.html"
-                >Home </a
+                >Home <span class="sr-only">(current)</span></a
               >
             </li>
             <li class="nav-item active">
@@ -57,7 +57,7 @@
                 About Us
               </a>
               <div
-                class="dropdown-menu"
+                class="dropdown-menu list-group-item-chris3"
                 aria-labelledby="navbarDropdownMenuLink"
               >
                 <a class="dropdown-item" href="#">Info(Not implemented)</a>
@@ -69,50 +69,124 @@
       </nav>
     </div>
     
-    <div id="message-info-box" class="alert alert-success invisible text-center" role="alert"> </div>
-    <div id="message-error-box" class="alert alert-danger invisible text-center" role="alert"> </div>
-    <div class="card text-center m-auto col-xs-12 col-sm-8 col md-6 col-lg-4 border-info">
-      <div class="card-body">
-        <h5 id="card-name" class="card-title">Name</h5>
+    <section class="jumbotron text-center mt-n2 list-group-item-dark">
+      <div class="container mt-0  list-group-item-dark">
+        <h1 class="jumbotron-heading">This page is displaying single user.</h1>
+      </div> 
+      </section>
 
 
+  <div class="mt-5"></div>
     <div class="container col-sm-8">
-    </div>
-        
-    <div class="container col-sm-12">
-      <table class="table table-bordered table-dark .table-responsive">
-          <thead>
-        <tr>
-          <th scope="row" class="pt-3 pb-3">First Name</th>
-          <td id="input-firstname" class="pt-3 pb-3"></td>
-    
-        <tr>
-          <th scope="row" class="pt-3 pb-3">Last Name</th>
-          <td id="input-lastname" class="pt-3 pb-3"></td>
-        </tr>
-        <tr>
-          <th scope="row" class="pt-3 pb-3">Age</th>
-          <td id="input-age" class="pt-3 pb-3"></td>
-        </tr>
-        <tr>
-          <th scope="row" class="pt-3 pb-3">Postal</th>
-          <td id="input-postal" class="pt-3 pb-3"></td>
-        </tr>
-        <tr>
-          <th scope="row" class="pt-3 pb-3">City</th>
-          <td id="input-city" class="pt-3 pb-3"></td>
-        </tr>
-        <tr>
-          <th scope="row" class="pt-3 pb-3">Street</th>
-          <td id="input-street" class="pt-3 pb-3"></td>
-        </tr>
-      </thead>
-        </table>
-<div id="user-btns"></div>      
+      <div id="message-error-box" class="alert border-danger alert-danger invisible text-center" role="alert"> </div>
+      <div id="message-info-box" class="alert border-success alert-success invisible text-center" role="alert"> </div>
 </div>
+
+
+    <div class="mr-2 ml-2 mb-4">
+      <div class="card text-center m-auto col-xs-12 col-sm-8 col md-6 col-lg-4 border-info list-group-item-secondary pl-0 pr-0">
+        <div class="card-body pl-0 pr-0  pb-0">
+          <h5 id="card-name" class="card-title">Name</h5>
+          <div class="container col-sm-12 pr-0 pl-0 ">
+            <table class="table table-bordered table-dark .table-responsive">
+              <thead>
+                <tr>
+                  <th scope="row" class="pt-3 pb-3">First Name</th>
+                  <td id="input-firstname" class="pt-3 pb-3"></td>
+                <tr>
+                  <th scope="row" class="pt-3 pb-3">Last Name</th>
+                  <td id="input-lastname" class="pt-3 pb-3"></td>
+                </tr>
+                <tr>
+                  <th scope="row" class="pt-3 pb-3">Age</th>
+                  <td id="input-age" class="pt-3 pb-3"></td>
+                </tr>
+                <tr>
+                  <th scope="row" class="pt-3 pb-3">Postal</th>
+                  <td id="input-postal" class="pt-3 pb-3"></td>
+                </tr>
+                <tr>
+                  <th scope="row" class="pt-3 pb-3">City</th>
+                  <td id="input-city" class="pt-3 pb-3"></td>
+                </tr>
+                <tr>
+                  <th scope="row" class="pt-3 pb-3">Street</th>
+                  <td id="input-street" class="pt-3 pb-3"></td>
+                </tr>
+              </thead>
+            </table>
+            <div id="user-btns"></div>      
+          </div>
+        </div>
+      </div>
     </div>
 
 
+<!-- Footer -->
+<footer class="page-footer font-small blue pt-4 bg-chris text-light">
+
+  <div class="container-fluid text-center text-md-left">
+
+    <div class="row">
+
+      <div class="col-md-6 mt-md-0 mt-3">
+
+        <h5 class="text-uppercase">Do you have any questions about our company?</h5>
+        <p>Contact with us!</p>
+        <a class="navbar-brand p-0 m-0" href="index.html"><img alt="Eko-Okna" class="ml-2 mt-0 mb-0 mr-3" src="./img/logo.png" width="250" height="100"></a>
+
+      </div>
+
+      <hr class="clearfix w-100 d-md-none pb-3">
+
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <h5 class="text-uppercase">Our Company</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a class="text-chris3" href="#!"><h6>History</h6></a>
+          </li>
+          <li>
+            <a class="text-chris3" href="#!"><h6>Localizations</h6></a>
+          </li>
+          <li>
+            <a class="text-chris3" href="#!"><h6>Contact</h6></a>
+          </li>
+          <li>
+            <a class="text-chris3" href="#!"><h6>Rules</h6></a>
+          </li>
+        </ul>
+
+      </div>
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <h5 class="text-uppercase">Career</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a class="text-chris3" href="#!"><h6>Why us?</h6></a>
+          </li>
+          <li>
+            <a class="text-chris3" href="#!"><h6>Job offers</h6></a>
+          </li>
+          <li>
+            <a class="text-chris3" href="#!"><h6>Cooperation with universities</h6></a>
+          </li>
+          <li>
+            <a class="text-chris3" href="#!"><h6>Rules</h6></a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a class="text-chris3" href="https://github.com/FuryChris"> Krzysztof Kłapczyk></a>
+  </div>
+
+</footer>
   
 
 <script>

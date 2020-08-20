@@ -4,7 +4,6 @@ let editSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width
 let deleteSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path></svg>';
 let detailsSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M1.679 7.932c.412-.621 1.242-1.75 2.366-2.717C5.175 4.242 6.527 3.5 8 3.5c1.473 0 2.824.742 3.955 1.715 1.124.967 1.954 2.096 2.366 2.717a.119.119 0 010 .136c-.412.621-1.242 1.75-2.366 2.717C10.825 11.758 9.473 12.5 8 12.5c-1.473 0-2.824-.742-3.955-1.715C2.92 9.818 2.09 8.69 1.679 8.068a.119.119 0 010-.136zM8 2c-1.981 0-3.67.992-4.933 2.078C1.797 5.169.88 6.423.43 7.1a1.619 1.619 0 000 1.798c.45.678 1.367 1.932 2.637 3.024C4.329 13.008 6.019 14 8 14c1.981 0 3.67-.992 4.933-2.078 1.27-1.091 2.187-2.345 2.637-3.023a1.619 1.619 0 000-1.798c-.45-.678-1.367-1.932-2.637-3.023C11.671 2.992 9.981 2 8 2zm0 8a2 2 0 100-4 2 2 0 000 4z"></path></svg>'
 
-
 //  Changing JSON data into 
 const encodeFormData = (data) => {
     return Object.keys(data)
@@ -48,9 +47,11 @@ async function findById(id) {
     return;
 }
 
-
 // handling of displaying list of users
 function getUsers() {
+    //checking for localstorage messages to display
+    infoMessage(null);
+    errorMessage(null);
     fetch('http://test.eko.eu')
         .then(res => res.json())
         .then(data => {
@@ -72,7 +73,7 @@ function getUsers() {
 
                 <td class="pt-3 pb-3">
                     <form action="user.html" method="GET">
-                        <button type="submit" id="btn-details${user.id}" onclick="getId(this)" class="btn btn-details btn-chris3  btn-outline-light" value="${user.id}">
+                        <button type="submit" id="btn-details${user.id}" onclick="getId(this)" class="btn btn-details btn-outline-chris3 list-group-item-chris3" value="${user.id}">
                             ${detailsSVG}
                         </button >
                     </form>
@@ -80,7 +81,7 @@ function getUsers() {
 
                 <td class="pt-3 pb-3" >
                     <form action="edit-user.html" method="GET">
-                        <button type="submit" id="btn-edit${user.id}" onclick="getId(this)" class=" btn btn-edit btn-chris3  btn-outline-light" value="${user.id}">
+                        <button type="submit" id="btn-edit${user.id}" onclick="getId(this)" class=" btn btn-edit btn-outline-chris3 list-group-item-chris3" value="${user.id}">
                             ${editSVG}
                         </button>
                     </form>
@@ -88,7 +89,7 @@ function getUsers() {
 
                 <td class="pt-3 pb-3">
                     <form action="" method="DELETE">
-                        <button type="submit" id="btn-delete${user.id}" onclick="deleteUser(event)" class="btn-delete btn  btn-chris3  btn-outline-light" value="${user.id}">
+                        <button type="submit" id="btn-delete${user.id}" onclick="deleteUser(event)" class="btn-delete btn  btn-outline-chris3 list-group-item-chris3" value="${user.id}">
                         ${deleteSVG}
                         </button>
                     </form>
@@ -96,20 +97,33 @@ function getUsers() {
             </tr >
                 `
                 document.getElementsByClassName('table-users')[0].innerHTML = output;
+
+                //resetting msgs
+                localStorage.setItem('msg', null);
+                localStorage.setItem('msgErr', null);
+
             }
         })
         .catch(error => {
             errorMessage('Error: Failed to fetch data!');
         })
 }
-
 // info-message handler
 function infoMessage(message) {
     let messageDOM = document.getElementById('message-info-box');
     if (message !== null) {
+        console.log('1');
+
         messageDOM.classList.remove('invisible');
         messageDOM.innerHTML = message;
+    } else if ((localStorage.getItem('msg') !== 'null')) {
+        messageDOM.classList.remove('invisible');
+        console.log('2');
+
+        messageDOM.innerHTML = localStorage.getItem('msg');
     } else {
+        console.log('3');
+
         messageDOM.classList.add('invisible')
     }
 }
@@ -120,6 +134,9 @@ function errorMessage(message) {
     if (message !== null) {
         messageDOM.classList.remove('invisible');
         messageDOM.innerHTML = message;
+    } else if (localStorage.getItem('msgErr') !== 'null') {
+        messageDOM.classList.remove('invisible');
+        messageDOM.innerHTML = localStorage.getItem('msgErr');
     } else {
         messageDOM.classList.add('invisible')
     }
@@ -195,7 +212,8 @@ function addUser(event) {
             if (res.status !== 200) {
                 errorMessage(`Some error ocurred! Error code: ${res.status}`);
             } else {
-                infoMessage('User succesfully added!')
+                window.location.href = "./index.html"
+                localStorage.setItem('msg', 'User succesfully added!');
             }
         }).catch(error => errorMessage(error));
 }
@@ -204,6 +222,7 @@ function addUser(event) {
 
 function deleteUser(event) {
     let id = +event.target.value;
+    console.log(id);
     event.preventDefault();
     event.target.disabled = true;
     fetch(`${proxyUrl}http://test.eko.eu/user/${id}`, {
@@ -214,10 +233,8 @@ function deleteUser(event) {
             if (res.status !== 200) {
                 errorMessage(`Some error ocurred! Error code: ${res.status}`);
             } else {
-                infoMessage('User succesfully deleted! Redirecting...')
-                setTimeout(function () {
-                    window.location.href = "./index.html"
-                }, 3000);
+                window.location.href = "./index.html"
+                localStorage.setItem('msg', 'User succesfully deleted!');
             }
         })
         .catch(error => {
@@ -252,7 +269,8 @@ function editUser(ev) {
             if (res.status !== 200) {
                 errorMessage(`Some error ocurred! Error code: ${res.status}`);
             } else {
-                infoMessage('User succesfully edited!')
+                window.location.href = "./index.html"
+                localStorage.setItem('msg', 'User succesfully edited!');
             }
         })
         .catch(error => errorMessage(error));
