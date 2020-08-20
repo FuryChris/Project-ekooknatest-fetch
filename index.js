@@ -42,7 +42,6 @@ async function findById(id) {
         }
     }
     errorMessage('Error: User not found!');
-    console.log('User not found!');
     return;
 }
 
@@ -61,7 +60,6 @@ function getUsers() {
             for (const userKey in users) {
                 let user = users[userKey];
                 order += 1;
-                console.log (user);
                 let id = user.id;
                 output += `
             <tr>
@@ -186,13 +184,31 @@ function getDisplayUser(id) {
 function addUser(event) {
     event.preventDefault();
     event.target.disabled = true;
+    //  BASIC INPUT VALIDATION
+        let age = document.getElementById('input-age').value
+        let fname = document.getElementById('input-firstname').value
+        let lname = document.getElementById('input-lastname').value
+        let postal = document.getElementById('input-postal').value
+        let street = document.getElementById('input-street').value
+        let city = document.getElementById('input-city').value
+
+if (!((age.length > 0 && age < 120)
+    && (fname.length > 0 && fname.length < 101)
+    && (lname.length > 0 && lname.length < 101)
+    && (postal.length > 0 && postal.length < 11)
+    && (street.length > 0 && street.length < 101)
+    && (city.length > 0 && city.length < 101)
+)) {
+    errorMessage('Provided data is wrong!')
+    event.target.disabled = false;
+} else{
     let formData = {
-        first_name: `${document.getElementById('input-firstname').value}`,
-        last_name: `${document.getElementById('input-lastname').value}`,
-        age: `${document.getElementById('input-age').value}`,
-        postal_code: `${document.getElementById('input-postal').value}`,
-        city: `${document.getElementById('input-city').value}`,
-        street: `${document.getElementById('input-street').value}`,
+        first_name: `${fname}`,
+        last_name: `${lname}`,
+        age: `${age}`,
+        postal_code: `${postal}`,
+        city: `${city}`,
+        street: `${street}`,
     }
 
     fetch(`${proxyUrl}https://test.eko.eu/user`, {
@@ -208,15 +224,14 @@ function addUser(event) {
             if (res.status !== 200) {
                 errorMessage(`Some error ocurred! Error code: ${res.status}`);
             } else {
-                console.log(res);
                 window.location.href = "./users.html"
                 localStorage.setItem('msg', 'User succesfully added!');
             }
         }).catch(error => errorMessage(error));
 }
+}
 
 function deleteUser(event, id) {
-    console.log(id);
     event.preventDefault();
     event.target.disabled = true;
     fetch(`${proxyUrl}https://test.eko.eu/user/${id}`, {
@@ -232,7 +247,6 @@ function deleteUser(event, id) {
             }
         })
         .catch(error => {
-            console.log(error);
             errorMessage(error)
         });
 }
@@ -242,13 +256,32 @@ function editUser(ev) {
     let userId = btn.value;
     btn.disabled = true;
     ev.preventDefault();
-    let editData = {
-        first_name: `${document.getElementById('input-firstname').value}`,
-        last_name: `${document.getElementById('input-lastname').value}`,
-        age: `${document.getElementById('input-age').value}`,
-        postal_code: `${document.getElementById('input-postal').value}`,
-        city: `${document.getElementById('input-city').value}`,
-        street: `${document.getElementById('input-street').value}`,
+
+//  BASIC INPUT VALIDATION
+        let age = document.getElementById('input-age').value
+        let fname = document.getElementById('input-firstname').value
+        let lname = document.getElementById('input-lastname').value
+        let postal = document.getElementById('input-postal').value
+        let street = document.getElementById('input-street').value
+        let city = document.getElementById('input-city').value
+
+if (!((age.length > 0 && age < 120)
+    && (fname.length > 0 && fname.length < 101)
+    && (lname.length > 0 && lname.length < 101)
+    && (postal.length > 0 && postal.length < 11)
+    && (street.length > 0 && street.length < 101)
+    && (city.length > 0 && city.length < 101)
+)) {
+    errorMessage('Provided data is wrong!')
+    btn.disabled = false;
+} else{
+let editData = {
+        first_name: `${fname}`,
+        last_name: `${lname}`,
+        age: `${age}`,
+        postal_code: `${postal}`,
+        city: `${city}`,
+        street: `${street}`,
     }
     fetch(`${proxyUrl}https://test.eko.eu/user/${userId}`, {
         method: 'PUT',
@@ -269,3 +302,5 @@ function editUser(ev) {
         })
         .catch(error => errorMessage(error));
 }
+}
+    
