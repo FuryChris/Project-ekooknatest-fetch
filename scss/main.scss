@@ -4,14 +4,14 @@ $theme-colors: (
 "chris3": #ff9900
 );
 
+body {
+min-height: 100vh !important;
+}
 .invisible {
     padding: 0px !important;
     margin: 0px !important;
 }
 
-// .wrapper {
-//     margin: 0px 20% 25px 20%;
-// }
 
 .nav-top {
     margin-bottom: 56px;

@@ -15,7 +15,6 @@ controlPages();
 function controlPages() {
     switch (localStorage.getItem('page')) {
         case 'home':
-            getUsers();
             break;
         case 'users':
             getUsers();
@@ -33,7 +32,7 @@ function controlPages() {
 }
 
 async function findById(id) {
-    const res = await fetch('http://test.eko.eu')
+    const res = await fetch('https://test.eko.eu')
     const data = await res.json();
     let users = { ...data.users };
     for (const userKey in users) {
@@ -113,7 +112,7 @@ function getUsers() {
 // info-message handler
 function infoMessage(message) {
     let messageDOM = document.getElementById('message-info-box');
-    if (message !== null) {
+    if (message !== null && message) {
         messageDOM.classList.remove('invisible');
         messageDOM.innerHTML = message;
     } else if ((localStorage.getItem('msg') !== 'null')) {
@@ -195,7 +194,7 @@ function addUser(event) {
         street: `${document.getElementById('input-street').value}`,
     }
 
-    fetch(`${proxyUrl}http://test.eko.eu/user`, {
+    fetch(`${proxyUrl}https://test.eko.eu/user`, {
         method: 'POST',
         headers: {
             "content-type": "application/x-www-form-urlencoded",
@@ -209,7 +208,7 @@ function addUser(event) {
                 errorMessage(`Some error ocurred! Error code: ${res.status}`);
             } else {
                 console.log(res);
-                window.location.href = "./index.html"
+                window.location.href = "./users.html"
                 localStorage.setItem('msg', 'User succesfully added!');
             }
         }).catch(error => errorMessage(error));
@@ -220,7 +219,7 @@ function deleteUser(event) {
     console.log(id);
     event.preventDefault();
     event.target.disabled = true;
-    fetch(`${proxyUrl}http://test.eko.eu/user/${id}`, {
+    fetch(`${proxyUrl}https://test.eko.eu/user/${id}`, {
         method: 'DELETE',
     })
         .then(res => {
@@ -228,7 +227,7 @@ function deleteUser(event) {
             if (res.status !== 200) {
                 errorMessage(`Some error ocurred! Error code: ${res.status}`);
             } else {
-                window.location.href = "./index.html"
+                window.location.href = "./users.html"
                 localStorage.setItem('msg', 'User succesfully deleted!');
             }
         })
@@ -251,7 +250,7 @@ function editUser(ev) {
         city: `${document.getElementById('input-city').value}`,
         street: `${document.getElementById('input-street').value}`,
     }
-    fetch(`${proxyUrl}http://test.eko.eu/user/${userId}`, {
+    fetch(`${proxyUrl}https://test.eko.eu/user/${userId}`, {
         method: 'PUT',
         headers: {
             "content-type": "application/x-www-form-urlencoded",
@@ -264,7 +263,7 @@ function editUser(ev) {
             if (res.status !== 200) {
                 errorMessage(`Some error ocurred! Error code: ${res.status}`);
             } else {
-                window.location.href = "./index.html"
+                window.location.href = "./users.html"
                 localStorage.setItem('msg', 'User succesfully edited!');
             }
         })
