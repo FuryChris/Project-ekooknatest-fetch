@@ -61,7 +61,8 @@ function getUsers() {
             for (const userKey in users) {
                 let user = users[userKey];
                 order += 1;
-
+                console.log (user);
+                let id = user.id;
                 output += `
             <tr>
                 <th scope="row" class="pt-3 pb-3">${order}</th>
@@ -72,7 +73,7 @@ function getUsers() {
 
                 <td class="pt-3 pb-3">
                     <form action="user.html" method="GET">
-                        <button type="submit" id="btn-details${user.id}" onclick="getId(this)" class="btn btn-details btn-outline-chris3 list-group-item-chris3" value="${user.id}">
+                        <button type="submit" onclick="getId(this)" class="btn btn-details btn-outline-chris3 list-group-item-chris3" value="${id}">
                             ${detailsSVG}
                         </button >
                     </form>
@@ -80,7 +81,7 @@ function getUsers() {
 
                 <td class="pt-3 pb-3" >
                     <form action="edit-user.html" method="GET">
-                        <button type="submit" id="btn-edit${user.id}" onclick="getId(this)" class=" btn btn-edit btn-outline-chris3 list-group-item-chris3" value="${user.id}">
+                        <button type="submit" onclick="getId(this)" class=" btn btn-edit btn-outline-chris3 list-group-item-chris3" value="${id}">
                             ${editSVG}
                         </button>
                     </form>
@@ -88,7 +89,7 @@ function getUsers() {
 
                 <td class="pt-3 pb-3">
                     <form action="" method="DELETE">
-                        <button type="submit" id="btn-delete${user.id}" onclick="deleteUser(event)" class="btn-delete btn  btn-outline-chris3 list-group-item-chris3" value="${user.id}">
+                        <button type="submit" onclick="deleteUser(event, this.value)" class="btn-delete btn  btn-outline-chris3 list-group-item-chris3" value="${id}">
                         ${deleteSVG}
                         </button>
                     </form>
@@ -175,7 +176,7 @@ function getDisplayUser(id) {
                 </button>  
             </form>
             <form action="" class="form-check-inline" method="DELETE">
-        <button type="button" onclick="deleteUser(event)" class=" btn btn-chris3 mb-3 ml-4 w-100 btn-outline-dark" value="${user.id}">${deleteSVG} Delete</button>
+        <button type="button" onclick="deleteUser(event, this.value)" class=" btn btn-chris3 mb-3 ml-4 w-100 btn-outline-dark" value="${user.id}">${deleteSVG} Delete</button>
         </form>
         `;
     })
@@ -202,7 +203,7 @@ function addUser(event) {
         },
         body: encodeFormData(formData)
     })
-        .then(res => {
+        .then( res => {
             event.target.disabled = false;
             if (res.status !== 200) {
                 errorMessage(`Some error ocurred! Error code: ${res.status}`);
@@ -214,8 +215,7 @@ function addUser(event) {
         }).catch(error => errorMessage(error));
 }
 
-function deleteUser(event) {
-    let id = +event.target.value;
+function deleteUser(event, id) {
     console.log(id);
     event.preventDefault();
     event.target.disabled = true;
