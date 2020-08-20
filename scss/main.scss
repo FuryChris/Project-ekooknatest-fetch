@@ -1,17 +1,20 @@
 $theme-colors: (
 "chris": #262540,
-"chris2": #36e345,
+"chris2": #ff9e77,
 "chris3": #ff9900
 );
 
-
+.invisible {
+    padding: 0px !important;
+    margin: 0px !important;
+}
 
 // .wrapper {
 //     margin: 0px 20% 25px 20%;
 // }
 
 .nav-top {
-    margin: 80px;
+    margin: 50px;
 }
 
 

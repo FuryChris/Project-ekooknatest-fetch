@@ -20,7 +20,7 @@
         id="nav"
         class="navbar fixed-top navbar-expand-lg navbar-dark bg-chris"
       >
-        <a class="navbar-brand" href="index.html">Navbar</a>
+        <a class="navbar-brand p-0 m-0" href="index.html"><img alt="Eko-Okna" class="ml-2 mt-0 mb-0 mr-3" src="./img/logo.png" width="115" height="50"></a>
         <button
           class="navbar-toggler"
           type="button"
@@ -35,16 +35,16 @@
 
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="/index.html"
+            <li class="nav-item">
+              <a class="nav-link" href="index.html"
                 >Home <span class="sr-only">(current)</span></a
               >
             </li>
-            <li class="nav-item ml-2">
-              <a class="nav-link" href="/users.html">Users</a>
+            <li class="nav-item active">
+              <a class="nav-link" href="./users.html">Users</a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="new-user.html">Add New User</a>
+              <a class="nav-link" href="./new-user.html">Add New User</a>
             </li>
             <li class="nav-item dropdown">
               <a
@@ -55,15 +55,15 @@
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                Dropdown link
+                About Us
               </a>
               <div
                 class="dropdown-menu"
                 aria-labelledby="navbarDropdownMenuLink"
               >
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" href="#">Info(Not implemented)</a>
+                <a class="dropdown-item" href="#">Our Projects(Not implemented)</a>
+                <a class="dropdown-item" href="#">Career(Not implemented)</a>
               </div>
             </li>
         </div>
@@ -71,7 +71,7 @@
     </div>
     
     <div class="container col-sm-8">
-      <div id="message-info-box" class="alert alert-danger invisible text-center" role="alert"> </div>
+      <div id="message-info-box" class="alert alert-success invisible text-center" role="alert"> </div>
       <div id="message-error-box" class="alert alert-danger invisible text-center" role="alert"> </div>
     </div>
 
@@ -80,7 +80,7 @@
       <form>
           <div class="form-row mb-2">
             <div class="col-4 col-md-2 mb-2">
-              <input id="input-age" type="text" class="form-control" placeholder="Age" />
+              <input id="input-age" type="text" class="form-control bg-chris2 "placeholder="Age" />
             </div>
             <div class="col-8 col-md-5 mb-2">
               <input id="input-firstname" type="text" class="form-control" placeholder="First name" />
@@ -111,10 +111,10 @@
 <script>
 localStorage.setItem("page", 'edit-user');
 </script>
-  <script src="index.js">   document.getElementById('btn-edit').addEventListener('click', editUser);
-  </script>
-
-  <input type="hidden" name="userId" value="">
+  <script src="index.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
   </body>
 
