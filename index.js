@@ -47,18 +47,13 @@ async function findById(id) {
 
 
 function displayModal(id) {
-    console.log(event)
     let user = findById(id)
     user.then(res => {
-        console.log(res);
-        console.log(id);
-        console.log(document.getElementsByClassName('btn-modal')[0]);
-
         // dynamic change data in modal
         document.getElementsByClassName('btn-modal')[0].value = id;
         document.getElementsByClassName('btn-modal')[1].value = id;
         document.getElementsByClassName('btn-modal')[2].value = id;
-        document.getElementsByClassName('modal-title')[0].innerHtml = `${res.first_name} ${res.last_name}`;
+        document.getElementsByClassName('modal-title')[0].textContent = `${res.first_name} ${res.last_name}`;
     })
         .catch(err => {
             console.log(err)
@@ -99,12 +94,12 @@ function getUsers() {
                       </button >
                       </form>
                       <form action="edit-user.html" method="GET">
-                      <button type="submit" onclick="getId(this)" class=" btn btn-modal btn-edit btn-outline-chris3 list-group-item-chris3 d-none d-sm-block"  value="">
+                      <button type="submit" onclick="getId(this)" class=" btn btn-modal btn-edit btn-outline-chris3 list-group-item-chris3"  value="">
                           ${editSVG} Edit
                       </button>
                       </form>
                       <form action="" method="DELETE">
-                      <button type="submit" onclick="deleteUser(event, this.value)" class="btn btn-modal btn-delete btn  btn-outline-chris3 list-group-item-chris3 d-none d-sm-block"  value="">
+                      <button type="submit" onclick="deleteUser(event, this.value)" class="btn btn-modal btn-delete btn  btn-outline-chris3 list-group-item-chris3"  value="">
                       ${deleteSVG} Delete
                       </button>
                   </form>
