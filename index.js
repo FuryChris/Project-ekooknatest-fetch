@@ -37,13 +37,34 @@ async function findById(id) {
     let users = { ...data.users };
     for (const userKey in users) {
         let user = users[userKey];
-        if (user.id == localStorage.getItem('userId')) {
+        if (user.id == id) {
             return user;
         }
     }
     errorMessage('Error: User not found!');
     return;
 }
+
+
+function displayModal(id) {
+    console.log(event)
+    let user = findById(id)
+    user.then(res => {
+        console.log(res);
+        console.log(id);
+        console.log(document.getElementsByClassName('btn-modal')[0]);
+
+        // dynamic change data in modal
+        document.getElementsByClassName('btn-modal')[0].value = id;
+        document.getElementsByClassName('btn-modal')[1].value = id;
+        document.getElementsByClassName('btn-modal')[2].value = id;
+        document.getElementsByClassName('modal-title')[0].innerHtml = `${res.first_name} ${res.last_name}`;
+    })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
 
 // handling of displaying list of users
 function getUsers() {
@@ -57,41 +78,65 @@ function getUsers() {
             let users = { ...data.users };
             let output = '';
 
+
+            let modalInit = `
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Name</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      Choose an user action. Warning! Deleted users cannot be restored!
+                    </div>
+                    <div class="modal-footer">
+                      <form action="user.html" method="GET">
+                      <button type="submit" onclick="getId(this)" class="btn btn-modal btn-details btn-outline-chris3 list-group-item-chris3"  value="">
+                          ${detailsSVG} Details
+                      </button >
+                      </form>
+                      <form action="edit-user.html" method="GET">
+                      <button type="submit" onclick="getId(this)" class=" btn btn-modal btn-edit btn-outline-chris3 list-group-item-chris3 d-none d-sm-block"  value="">
+                          ${editSVG} Edit
+                      </button>
+                      </form>
+                      <form action="" method="DELETE">
+                      <button type="submit" onclick="deleteUser(event, this.value)" class="btn btn-modal btn-delete btn  btn-outline-chris3 list-group-item-chris3 d-none d-sm-block"  value="">
+                      ${deleteSVG} Delete
+                      </button>
+                  </form>
+                  </div>
+                </div>
+              </div>
+              `
+
+            document.getElementById('modal').innerHTML = modalInit;
+
+
+
             for (const userKey in users) {
                 let user = users[userKey];
                 order += 1;
                 let id = user.id;
                 output += `
-            <tr>
-                <th scope="row" class="pt-3 pb-3">${order}</th>
-                <td class="pt-3 pb-3">${user.first_name}</td>
-                <td class="pt-3 pb-3">${user.last_name}</td>
-                <td class="pt-3 pb-3" >${user.age}</td>
-                <td class="pt-3 pb-3">${user.city}</td>
+                <tr data-toggle="modal" data-target="#exampleModal" onclick="displayModal(${id})" style="cursor: pointer;">
+                    <th scope="row"" class="pt-3 pb-3">${order}</th>
+                    <td class="pt-3 pb-3">${user.first_name}</td>
+                    <td class="pt-3 pb-3">${user.last_name}</td>
+                    <td class="pt-3 pb-3" >${user.age}</td>
+                    <td class="pt-3 pb-3">${user.city}</td>
 
-                <td class="pt-3 pb-3">
-                    <form action="user.html" method="GET">
-                        <button type="submit" onclick="getId(this)" class="btn btn-details btn-outline-chris3 list-group-item-chris3" value="${id}">
-                            ${detailsSVG}
-                        </button >
-                    </form>
-                </td >
-                <td class="pt-3 pb-3" >
-                    <form action="edit-user.html" method="GET">
-                        <button type="submit" onclick="getId(this)" class=" btn btn-edit btn-outline-chris3 list-group-item-chris3 d-none d-sm-block" value="${id}">
-                            ${editSVG}
-                        </button>
-                    </form>
-                </td>
-
-                <td class="pt-3 pb-3 ">
-                    <form action="" method="DELETE">
-                        <button type="submit" onclick="deleteUser(event, this.value)" class="btn-delete btn  btn-outline-chris3 list-group-item-chris3 d-none d-sm-block" value="${id}">
-                        ${deleteSVG}
-                        </button>
-                    </form>
-                </td>
-            </tr >
+                    <td class="pt-3 pb-3">
+                        <form action="user.html" method="GET">
+                            <button type="submit" onclick="getId(this)" class="btn btn-details btn-outline-chris3 list-group-item-chris3" value="${id}">
+                                ${detailsSVG}
+                            </button >
+                        </form>
+                    </td >
+                </tr >
                 `
                 document.getElementsByClassName('table-users')[0].innerHTML = output;
 
@@ -107,13 +152,15 @@ function getUsers() {
             localStorage.setItem('msgErr', null);
         })
 }
+
+
 // info-message handler
 function infoMessage(message) {
     let messageDOM = document.getElementById('message-info-box');
     if (message !== null && message) {
         messageDOM.classList.remove('invisible');
         messageDOM.innerHTML = message;
-    } else if ((localStorage.getItem('msg') !== 'null')) {
+    } else if ((localStorage.getItem('msg') !== 'null') && localStorage.getItem('msg')) {
         messageDOM.classList.remove('invisible');
         messageDOM.innerHTML = localStorage.getItem('msg');
     } else {
@@ -124,10 +171,10 @@ function infoMessage(message) {
 // error-message handler
 function errorMessage(message) {
     let messageDOM = document.getElementById('message-error-box');
-    if (message !== null) {
+    if (message !== null && message) {
         messageDOM.classList.remove('invisible');
         messageDOM.innerHTML = message;
-    } else if (localStorage.getItem('msgErr') !== 'null') {
+    } else if (localStorage.getItem('msgErr') !== 'null' && localStorage.getItem('msgErr')) {
         messageDOM.classList.remove('invisible');
         messageDOM.innerHTML = localStorage.getItem('msgErr');
     } else {

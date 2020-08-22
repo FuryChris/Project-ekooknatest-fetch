@@ -73,10 +73,11 @@
     <section class="jumbotron text-center mt-n2 list-group-item-dark">
       <div class="container mt-0  list-group-item-dark">
         <h1 class="jumbotron-heading">This page is displaying list of users</h1>
-        <p class="lead text-muted">On this site you can find list of users. You can display them and editing them. On extra-small screen you have to redirect to details page first.</p>
+        <p class="lead text-muted">On this site you can find list of users. If you click on specific user, you can choose one of user action (edit, details, delete) as modal. On the right side of table there is an eye, which redirects you to the user details page.</p>
         <p>
       </div> 
       </section>
+
 
   <div class="mt-5"></div>
     <div class="container col-sm-8">
@@ -84,7 +85,7 @@
       <div id="message-info-box" class="alert border-success alert-success invisible text-center" role="alert"> </div>
 </div>
 
-
+<div id="modal"></div>
 <div class="container">
   <table class="table table-hover table-sm table-dark .table-responsive">
       <thead>
@@ -94,9 +95,7 @@
       <th scope="col">Last</th>
       <th scope="col">Age</th>
       <th scope="col">City</th>
-      <th scope="col"></th>   
-      <th scope="col"></th>   
-      <th scope="col"></th>
+      <th scope="col">Details</th>   
     </tr>
   </thead>
   <tbody class="table-users">
